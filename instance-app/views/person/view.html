@@ -1,16 +1,16 @@
 <%= render(
   'html_head.html',
   {
-    title:       person.name,
-    description: person.name + ': ' + ( person.summary || '' ),
+    title:       translate( person.name ),
+    description: translate( person.name ) + ': ' + ( translate( person.summary ) || '' ),
   }
 ) %>
 
 <script>
     var popit = popit || {};
     popit.type = 'person';
-    popit.data = <%= JSON.stringify(person.toJSON()) %>;
-    popit.memberships = <%= JSON.stringify( _.map( memberships, function(m) { return m.id; } ) ) %>;
+    // popit.data = <%= JSON.stringify(person.toJSON()) %>;
+    // popit.memberships = <%= JSON.stringify( _.map( memberships, function(m) { return m.id; } ) ) %>;
 </script>
 
 <% if (userCan('edit instance')) { %>
@@ -54,7 +54,7 @@
         <a class="btn btn-success entity-save-changes"><span class="glyphicon glyphicon-ok glyphicon-space-after"></span> Save changes</a>
       </div>
     </div>
-    <p><a href="/persons">People</a> / <a href="<%- person.url %>"><%- person.name %></a></p>
+    <p><a href="/persons">People</a> / <a href="<%- person.url %>"><%- translate( person.name ) %></a></p>
   </div>
 </div>
 
@@ -69,7 +69,7 @@
     <div class="entity-header__primary-property">
       <label for="input-name">Name</label>
       <h1 itemprop="name" class="view-mode" data-api-name="name">
-        <%- person.name %>
+        <%- translate( person.name ) %>
         <span class="entity-little-edit-icon entity-enter-edit-mode" data-input-selector="#input-name"></span>
       </h1>
     </div>

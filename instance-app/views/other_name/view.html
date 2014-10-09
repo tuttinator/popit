@@ -1,8 +1,8 @@
 <div class="view-mode">
   <% if (item.note) { %>
-    <strong><%- item.note %>:</strong>
+    <strong><%- translate( item.note ) %>:</strong>
   <% } %>
-  <%- item.name %>
+  <%- translate( item.name ) %>
   <% if (item.start_date || item.end_date) { %>
     <span class="text-muted">(<%- item.start_date || '?' %> &ndash; <%- item.end_date || '?' %>)</span>
   <% } %>

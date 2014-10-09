@@ -1,14 +1,14 @@
 <div class="view-mode">
   <strong>
     <% if (item.label) { %>
-      <%- item.label %> (<%- item.type %>):
+      <%- translate( item.label ) %> (<%- translate( item.type ) %>):
     <% } else { %>
-      <%- item.type %>:
+      <%- translate( item.type )%>:
     <% } %>
   </strong>
   <%- item.value %>
   <% if (item.note) { %>
-    <span class="text-muted">(<%- item.note %>)</span>
+    <span class="text-muted">(<%- translate( item.note ) %>)</span>
   <% } %>
 </div>
 <div class="edit-mode edit-group">

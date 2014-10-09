@@ -34,9 +34,9 @@
         <a class="media" href="<%- person.url %>">
           <span class="pull-left media-object initials"><%- person.initials %></span>
           <div class="media-body">
-            <h4><%- person.name %></h4>
+            <h4><%- translate( person.name ) %></h4>
             <% if (person.summary) { %>
-              <p><%- person.summary %></p>
+              <p><%- translate( person.summary ) %></p>
             <% } %>
           </div>
         </a>

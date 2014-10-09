@@ -7,6 +7,7 @@
 var express           = require('express'),
     config            = require('config'),
     assets            = require('connect-assets'),
+    accept            = require('http-accept'),
     instanceSelector  = require('../lib/middleware/instance-selector'),
     checkInstanceAvailable = require('../lib/middleware/check-instance-available'),
     image_proxy       = require('image-proxy/lib/proxy'),
@@ -14,6 +15,7 @@ var express           = require('express'),
     current_absolute_pathname = require('../lib/middleware/route').current_absolute_pathname,
     engines           = require('consolidate'),
     popitApiStorageSelector = require('popit-api/src/middleware/storage-selector'),
+    translate         = require('../lib/middleware/translate'),
     passport          = require('../lib/passport');
 
 var app = module.exports = express();
@@ -48,6 +50,7 @@ app.configure( function () {
     next();    
   });
 
+  app.use(accept);
   app.use(passport.initialize());
   app.use(passport.session());
 
@@ -60,6 +63,8 @@ app.configure( function () {
     storageSelector: 'popit',
     databasePrefix: config.MongoDB.popit_prefix
   }));
+
+  app.use(translate());
 
   app.use( require('../lib/apps/auth').middleware );
   app.use( require('../lib/apps/auth').app );
